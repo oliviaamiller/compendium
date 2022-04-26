@@ -2,7 +2,6 @@ import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import PokemonCard from '../../components/Pokemon/Card';
 
-
 //setting state
 export default function PokemonList() {
   const [pokemon, setPokemon] = useState([]);
@@ -30,7 +29,7 @@ export default function PokemonList() {
     getPokemon();
   }, []);
 
-// function for handling search input, will filter by name, be case insensitive and remove excess white space
+  // function for handling search input, will filter by name, be case insensitive and remove excess white space
   const handleSearch = (event) => {
     setSearch(event.target.value);
     const searchResults = pokemons.filter((pokemon) =>
@@ -41,5 +40,16 @@ export default function PokemonList() {
     setResults(searchResults);
   };
 
-  return <div>Pokemon List</div>;
+  return (
+    <>
+      <h2>pokemon</h2>
+      <div>
+        <input
+          placeholder="search by name"
+          value={search}
+          onChange={handleSearch}
+        />
+      </div>
+    </>
+  );
 }
