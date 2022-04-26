@@ -4,10 +4,14 @@ import PokemonCard from '../../components/Pokemon/Card';
 
 //setting state
 export default function PokemonList() {
-  const [pokemon, setPokemon] = useState([]);
+  const [pokemons, setPokemons] = useState([]);
   const [loading, setLoading] = useState(true);
   const [search, setSearch] = useState('');
   const [results, setResults] = useState([]);
+
+  const searching = !!search.length;
+  const noPokemon = searching && !results.length;
+  const pokeList = searching ? results : pokemons;
 
   // fetching the API, creating a new object with the info I want access to
   useEffect(() => {
@@ -17,13 +21,12 @@ export default function PokemonList() {
       );
       const { data } = await res.json();
       const pokemonData = data.map((pokemon) => ({
-        id: pokemon.id,
         img: pokemon.url_image,
         name: pokemon.name,
         type: pokemon.type_1,
       }));
 
-      setPokemon(pokemonData);
+      setPokemons(pokemonData);
       setLoading(false);
     };
     getPokemon();
@@ -50,6 +53,24 @@ export default function PokemonList() {
           onChange={handleSearch}
         />
       </div>
+      <div>
+        {loading ? (
+          <p>loading...</p>
+        ) : (
+          <div>
+            {pokeList.map((pokemon) => {
+              return (
+                <PokemonCard
+                  img={pokemon.img}
+                  name={pokemon.name}
+                  type={pokemon.type}
+                />
+              );
+            })}
+          </div>
+        )}
+      </div>
+      {noPokemon && <p>no pokemon</p>}
     </>
   );
 }
