@@ -2,12 +2,15 @@ import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import PokemonCard from '../../components/Pokemon/Card';
 
+
+//setting state
 export default function PokemonList() {
   const [pokemon, setPokemon] = useState([]);
   const [loading, setLoading] = useState(true);
   const [search, setSearch] = useState('');
   const [results, setResults] = useState([]);
 
+  // fetching the API, creating a new object with the info I want access to
   useEffect(() => {
     const getPokemon = async () => {
       const res = await fetch(
@@ -18,7 +21,7 @@ export default function PokemonList() {
         id: pokemon.id,
         img: pokemon.url_image,
         name: pokemon.name,
-        type: pokemon.type_1
+        type: pokemon.type_1,
       }));
 
       setPokemon(pokemonData);
@@ -27,7 +30,16 @@ export default function PokemonList() {
     getPokemon();
   }, []);
 
-
+// function for handling search input, will filter by name, be case insensitive and remove excess white space
+  const handleSearch = (event) => {
+    setSearch(event.target.value);
+    const searchResults = pokemons.filter((pokemon) =>
+      pokemon.name
+        .toLowerCase()
+        .includes(event.target.value.toLowerCase().trim())
+    );
+    setResults(searchResults);
+  };
 
   return <div>Pokemon List</div>;
 }
