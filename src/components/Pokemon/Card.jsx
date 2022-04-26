@@ -1,13 +1,9 @@
-export default function PokemonCard({ pokemons }) {
+export default function PokemonCard({ img, name, type }) {
   return (
     <div>
-      {pokemons.map((pokemon, i) => (
-        <div key={`${pokemon}-${i}`}>
-          <img src={pokemon.img} />
-          <p>{pokemon.name}</p>
-          <p>{pokemon.type}</p>
-        </div>
-      ))}
+     <img src={img} />
+     <p>{name}</p>
+     <p>{type}</p>
     </div>
   );
 }
