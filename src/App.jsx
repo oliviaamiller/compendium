@@ -1,13 +1,10 @@
-import { Link, Route, Switch } from 'react-router-dom';
-import ArtDetail from './views/Pokemon/Detail';
+import { BrowserRouter as Router, Link, Route, Switch } from 'react-router-dom';
 import PokemonList from './views/Pokemon/List';
 
 export default function App() {
   return (
+    <Router>
     <Switch>
-      <Route path="/pokemon/...tbd">
-        <ArtDetail />
-      </Route>
       <Route path="/pokemon">
         <PokemonList />
       </Route>
@@ -16,5 +13,6 @@ export default function App() {
         <Link to="/pokemon">pokemon list</Link>
       </Route>
     </Switch>
+    </Router>
   );
 }

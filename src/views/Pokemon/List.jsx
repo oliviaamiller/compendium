@@ -13,7 +13,9 @@ export default function PokemonList() {
       const res = await fetch(' https://pokedex-alchemy.herokuapp.com/api/pokedex');
       const { data } = await res.json();
       const pokemonData = data.map((pokemon) => ({
-        id:
+        id: pokemon.id,
+        name: pokemon.name,
+        img: pokemon.url_image
       }))
     }
   });
