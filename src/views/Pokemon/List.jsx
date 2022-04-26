@@ -10,15 +10,24 @@ export default function PokemonList() {
 
   useEffect(() => {
     const getPokemon = async () => {
-      const res = await fetch(' https://pokedex-alchemy.herokuapp.com/api/pokedex');
+      const res = await fetch(
+        ' https://pokedex-alchemy.herokuapp.com/api/pokedex'
+      );
       const { data } = await res.json();
       const pokemonData = data.map((pokemon) => ({
         id: pokemon.id,
+        img: pokemon.url_image,
         name: pokemon.name,
-        img: pokemon.url_image
-      }))
-    }
-  });
+        type: pokemon.type_1
+      }));
+
+      setPokemon(pokemonData);
+      setLoading(false);
+    };
+    getPokemon();
+  }, []);
+
+
 
   return <div>Pokemon List</div>;
 }
