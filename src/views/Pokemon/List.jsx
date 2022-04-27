@@ -20,7 +20,7 @@ export default function PokemonList() {
   // fetching the API, creating a new object with the info I want access to
   useEffect(() => {
     const getPokemon = async () => {
-      const res = await fetch(' https://pokedex-alchemy.herokuapp.com/api/pokedex');
+      const res = await fetch('https://pokedex-alchemy.herokuapp.com/api/pokedex');
       const { results } = await res.json();
       const pokemonData = results.map((pokemon) => ({
         img: pokemon.url_image,
@@ -52,7 +52,7 @@ export default function PokemonList() {
         <input
           placeholder="search by name"
           value={search}
-          onChange={handleSearch}
+          onChange={() => {handleSearch}}  
         />
       </div>
       <div>
