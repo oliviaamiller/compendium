@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import PokemonCard from '../../components/Pokemon/Card';
+import styles from '../../App.css';
 
 //setting state
 export default function PokemonList() {
@@ -58,7 +59,7 @@ export default function PokemonList() {
         {loading ? (
           <p>loading...</p>
         ) : (
-          <div>
+          <div className={styles.pokelist}>
             {pokeList.map((pokemon) => {
               return (
                 <PokemonCard

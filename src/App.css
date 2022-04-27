@@ -1,0 +1,23 @@
+* {
+  box-sizing: border-box;
+}
+  
+.App, body, html, #root {
+  text-align: center;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: space-around;  
+}
+
+.pokelist {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+  background-color: palegoldenrod;
+}
+
+.img {
+  width: 55%;
+}
